@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommandations</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+    /* Recommendation list */
+    .recommendation-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .recommendation-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .recommendation-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .recommendation-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #4e54c8;
+    }
+
+    .recommendation-card p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .recommendation-card a {
+      display: inline-block;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .recommendation-card a:hover {
+      background: linear-gradient(90deg, #8f94fb, #4e54c8);
+      transform: scale(1.05);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .recommendation-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Recommandations</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> 
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    {% block content %}
+    <div class="container">
+        <h2>Recommandations de Voyages</h2>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    
+        {% if recommended_voyages %}
+            <div class="recommendation-list">
+              {% for voyage in recommended_voyages %}
+                     <div class="recommendation-card">
+                        <h3>{{ voyage.nom }}</h3>
+                        <p>Destination: {{ voyage.destination }}</p>
+                        <p>Type de voyage: {{ voyage.travel_type }}</p>
+                        <p>Prix: {{ voyage.prix }} TND</p>
+                        <p>Durée: {{ voyage.duration }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucune recommandation trouvée.</p>
+        {% endif %}
+    </div>
+    {% endblock %}  </div>
+</body>
+</html>

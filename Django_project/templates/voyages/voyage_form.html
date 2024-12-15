@@ -1,0 +1,17 @@
+<!-- voyages/voyage_form.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} un voyage</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} un voyage</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Mettre à jour{% else %}Enregistrer{% endif %}</button>
+    </form>
+    <a href="{% url 'voyage-list' %}">Annuler</a>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="chatContainer"></div>
+
+</body>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function initBotpressWebchat() {
+        const chatContainer = document.querySelector("#chatContainer");
+        
+        if (chatContainer && window.botpressWebChat && typeof window.botpressWebChat.init === 'function') {
+          try {
+            window.botpressWebChat.init({
+              hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
+              botId: "eb5964e0-c98e-43e9-a928-4ba9882d21a0",
+              configUrl: "https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/09/21/20241209215851-XC4MTSLF.json",
+              selector: "#chatContainer"
+            });
+            console.log("Botpress webchat initialized successfully");
+          } catch (error) {
+            console.error("Error initializing Botpress webchat:", error);
+          }
+        } else {
+          console.warn("Botpress webchat not ready or container missing, retrying...");
+          setTimeout(initBotpressWebchat, 1000);  // Retry after 1 second
+        }
+      }
+  
+      initBotpressWebchat();
+    });
+  </script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2024/12/09/21/20241209215851-WA0UMDQR.js"></script>
+    
+</html>

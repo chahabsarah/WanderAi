@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer la Destination</title>
+</head>
+<body>
+    <h1>Supprimer la Destination</h1>
+    <p>Êtes-vous sûr de vouloir supprimer {{ destination.name }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+    <a href="{% url 'destination_list' %}">Annuler</a>
+</body>
+</html>

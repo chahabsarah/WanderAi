@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Voyages</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h3 {
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+
+  
+    form {
+        background-color: #fff; /* Fond blanc pour le formulaire */
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre subtile autour du formulaire */
+        width: 100%;
+        max-width: 800px; /* Largeur du formulaire */
+        margin: 0 auto;
+    }
+
+    
+
+    /* Style pour les champs du formulaire */
+    form p {
+        margin: 1rem 0;
+        font-size: 1rem;
+    }
+form select{
+    border-radius: 8px;
+    width: 60px;
+}
+    form input, form textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #333;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    form input:focus, form textarea:focus {
+        border-color: #0a70d6; /* Bordure bleue au focus */
+        box-shadow: 0 0 8px rgba(10, 112, 214, 0.3); /* Ombre bleue subtile au focus */
+        outline: none;
+    }
+
+    /* Style du bouton de soumission */
+    button {
+        background-color: #4caf50; /* Vert pour le bouton */
+        color: white;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #45a049; /* Couleur légèrement plus foncée au survol */
+    }
+
+    button:active {
+        transform: scale(0.98); /* Effet de "clic" */
+    }
+
+    /* Style pour le CSRF token */
+    input[type="hidden"] {
+        display: none;
+    }
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav li {
+        margin-left: 0;
+        margin-bottom: 10px;
+      }
+
+      .experience-list {
+        grid-template-columns: 1fr;
+      }
+     
+    }
+
+   
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Créer une Préférence</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> <!-- Ajout du lien -->
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+        
+
+    </form>
+    </div>
+
+</body>
+</html>

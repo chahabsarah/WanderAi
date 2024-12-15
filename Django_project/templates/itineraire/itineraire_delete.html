@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer l'Itinéraire</title>
+</head>
+<body>
+    <h1>Supprimer l'Itinéraire</h1>
+    <p>Êtes-vous sûr de vouloir supprimer {{ itineraire.name }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+    <a href="{% url 'itineraire_list' %}">Annuler</a>
+</body>
+</html>

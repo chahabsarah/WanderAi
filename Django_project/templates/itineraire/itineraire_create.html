@@ -1,0 +1,33 @@
+<!-- templates/itineraire/itineraire_create.html -->
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>Create New Itinerary</h2>
+    <form action="{% url 'itineraire:create' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="destination" class="form-label">Destination</label>
+            <select name="destination" id="destination" class="form-select" required>
+                {% for destination in destinations %}
+                <option value="{{ destination.id }}">{{ destination.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="date_debut" class="form-label">Start Date</label>
+            <input type="date" name="date_debut" id="date_debut" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="date_fin" class="form-label">End Date</label>
+            <input type="date" name="date_fin" id="date_fin" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="preferences" class="form-label">Preferences</label>
+            <textarea name="preferences" id="preferences" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Itinerary</button>
+    </form>
+</div>
+{% endblock %}

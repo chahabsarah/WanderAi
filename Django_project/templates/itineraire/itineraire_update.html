@@ -1,0 +1,32 @@
+<!-- templates/itineraire/itineraire_update.html -->
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Update Itineraire</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="destination">Destination:</label>
+            <select name="destination" id="destination" class="form-control">
+                {% for destination in destinations %}
+                    <option value="{{ destination.id }}" {% if destination.id == itineraire.destination.id %}selected{% endif %}>{{ destination.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="date_debut">Start Date:</label>
+            <input type="date" name="date_debut" id="date_debut" class="form-control" value="{{ itineraire.date_debut }}" required>
+        </div>
+        <div class="form-group">
+            <label for="date_fin">End Date:</label>
+            <input type="date" name="date_fin" id="date_fin" class="form-control" value="{{ itineraire.date_fin }}" required>
+        </div>
+        <div class="form-group">
+            <label for="preferences">Preferences:</label>
+            <textarea name="preferences" id="preferences" class="form-control">{{ itineraire.preferences }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Itineraire</button>
+    </form>
+</div>
+{% endblock %}

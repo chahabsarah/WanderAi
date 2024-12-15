@@ -1,0 +1,17 @@
+<!-- preference/templates/preference/preference_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer la Préférence</title>
+</head>
+<body>
+    <h1>Supprimer la Préférence</h1>
+    <p>Êtes-vous sûr de vouloir supprimer la préférence de "{{ preference.user.name }}" pour "{{ preference.preference_type }}" ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmer la suppression</button>
+    </form>
+    <a href="{% url 'preference-list' %}">Annuler</a>
+</body>
+</html>

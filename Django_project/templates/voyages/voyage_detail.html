@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyages</title>
+  <style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and container */
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+    /* Card styles */
+    .voyage-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+      margin: 20px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .voyage-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .voyage-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #4caf50;
+    }
+
+    .voyage-card p {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .voyage-card a {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      background: #4caf50;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .voyage-card a:hover {
+      background: #388e3c;
+    }
+
+    /* Avis styles */
+    .avis-container {
+      margin-top: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .avis-container p {
+      margin-bottom: 10px;
+    }
+
+    .avis-container strong {
+      color: #6c63ff;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 15px 0;
+    }
+
+    .add-avis {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #6c63ff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .add-avis:hover {
+      background-color: #5a55d3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Voyages</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> <!-- Ajout du lien -->
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="voyage-card">
+      <h3>{{ voyage.nom }}</h3>
+      <p>Destination : {{ voyage.destination }}</p>
+      <p>Date de départ : {{ voyage.date_depart }}</p>
+      <p>Date de retour : {{ voyage.date_retour }}</p>
+      <p>Prix : {{ voyage.prix }} TND</p>
+    </div>
+
+    <div class="avis-container">
+      {% for avis in avis %}
+      <div>
+        <p><strong>Utilisateur :</strong> {{ avis.user }}</p>
+        <p><strong>Note :</strong> {{ avis.note }}</p>
+        <p><strong>Commentaire :</strong> {{ avis.commentaire }}</p>
+        <p><strong>Date :</strong> {{ avis.date }}</p>
+        
+      </div>
+      <hr>
+      {% empty %}
+      <p>Aucun avis pour ce voyage.</p>
+      {% endfor %}
+    </div>
+
+    <a class="add-avis" href="{% url 'avis-create' voyage.id %}">Ajouter un avis</a>
+  </div>
+</body>
+</html>

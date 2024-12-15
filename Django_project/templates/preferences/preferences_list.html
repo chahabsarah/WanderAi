@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Voyages</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h3 {
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+    .content {
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .content a {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .content a:hover {
+      background-color: #4caf50;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #0a70d6;
+      color: white;
+    }
+
+    td {
+      background-color: #f9f9f9;
+    }
+
+    td a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    td button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+
+    td button:hover {
+      background-color: #c0392b;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Liste des Préférences</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> <!-- Ajout du lien -->
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <a href="{% url 'preference-create' %}">Créer une nouvelle préférence</a>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mode de voyage</th>
+            <th>Type de voyage</th>
+            <th>Période préférée</th>
+            <th>Destination préférée</th>
+            <th>Durée</th>
+            <th>Budget</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for preference in preferences %}
+          <tr>
+            <td>{{ preference.travel_mode }}</td>
+            <td>{{ preference.travel_type }}</td>
+            <td>{{ preference.preferred_period }}</td>
+            <td>{{ preference.preferred_destination }}</td>
+            <td>{{ preference.duration }}</td>
+            <td>{{ preference.budget }}</td>
+            <td>
+              <a href="{% url 'preference-update' preference.pk %}">Modifier</a>
+              <form action="{% url 'preference-delete' preference.pk %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

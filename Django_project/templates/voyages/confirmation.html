@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyages</title>
+  <style>
+    /* Reset des styles de base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corps principal */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+/* Style spécifique pour le message de confirmation de réservation */
+h2 {
+    text-align: center;
+    color: #4caf50; /* Couleur verte pour indiquer la confirmation */
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #e8f5e9; /* Fond vert clair pour une bonne visibilité */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 60px;
+
+  }
+  
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Voyages</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> <!-- Ajout du lien -->
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+
+      </ul>
+    </nav>
+  </header>
+
+<body>
+    <h2>{{ message }}</h2>
+</body>
+</html>

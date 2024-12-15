@@ -1,0 +1,8 @@
+<!-- avis/templates/avis/avis_form.html -->
+<h1>Modifier un Avis</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+<a href="{% url 'avis-list' %}">Annuler</a>

@@ -1,0 +1,37 @@
+<!-- templates/itineraire/itineraire_list.html -->
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Itineraire List</h2>
+    <a class="btn btn-success mb-3" href="{% url 'itineraire:create' %}">Add New Itineraire</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Preferences</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for itineraire in itineraries %}
+            <tr>
+                <td>{{ itineraire.destination.nom }}</td>
+                <td>{{ itineraire.date_debut }}</td>
+                <td>{{ itineraire.date_fin }}</td>
+                <td>{{ itineraire.preferences }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'itineraire:update' itineraire.id %}">Edit</a>
+                    <form action="{% url 'itineraire:delete' itineraire.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

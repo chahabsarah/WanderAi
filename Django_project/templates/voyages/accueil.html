@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Voyages</title>
+  <style>
+    /* Reset styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    h1, h3 {
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header styles */
+    header {
+      background: linear-gradient(135deg, #6c63ff, #4caf50);
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #cddc39;
+    }
+
+
+    /* Main content styles */
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: #1e90ff;
+    }
+
+    .card p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .card button {
+      background: linear-gradient(135deg, #6d5dfc, #1e90ff);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card button:hover {
+      background: linear-gradient(135deg, #1e90ff, #6d5dfc);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Explorez Vos Voyages</h1>
+    <nav>
+      <ul>
+        <li><a href="/voyage/accueil">Accueil</a></li>
+        <li><a href="/voyage/">Voyages</a></li>
+        <li><a href="/experiences/">Expériences</a></li>
+        <li><a href="/recommendations/recommendations/">Recommandations</a></li>
+        <li><a href="/reservations/mes_reservations/">Mes réservations</a></li> <!-- Ajout du lien -->
+        <li><a href="/preferences/">Mes préférences</a></li> <!-- Ajout du lien -->
+
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <!-- Voyages -->
+      <div class="card">
+        <h3>Voyages</h3>
+        <p>Explorez nos voyages exceptionnels et trouvez votre prochaine aventure.</p>
+        <button onclick="window.location.href='/voyage/'">Voir les voyages</button>
+      </div>
+
+      <!-- Recommandations -->
+      <div class="card">
+        <h3>Recommandations</h3>
+        <p>Découvrez les avis et recommandations partagés par nos utilisateurs.</p>
+        <button onclick="window.location.href='/recommendations/recommendations/'">Voir les recommandations</button>
+      </div>
+
+      <!-- Expériences -->
+      <div class="card">
+        <h3>Expériences</h3>
+        <p>Réservez des expériences inoubliables pour enrichir vos voyages.</p>
+        <button onclick="window.location.href='/experiences/'">Voir les expériences</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Vos Préférences</h3>
+        <p class="card-description">Réservez des expériences inoubliables pour enrichir vos voyages. Personnalisez votre expérience en fonction de vos goûts et de vos attentes.</p>
+        <button onclick="window.location.href='/preferences/create'">Ajouter mes Préférences</button>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Vos Réservations</h3>
+        <p class="card-description">Réservez des expériences inoubliables et personnalisez vos voyages selon vos préférences. Consultez vos réservations pour suivre vos prochaines aventures.</p>
+        <button onclick="window.location.href='/reservations/mes_reservations'">Consulter Mes Réservations</button>
+
+      </div>
+      
+      
+    </div>
+  </div>
+  <div id="chatContainer"></div>
+
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function initBotpressWebchat() {
+      const chatContainer = document.querySelector("#chatContainer");
+      
+      if (chatContainer && window.botpressWebChat && typeof window.botpressWebChat.init === 'function') {
+        try {
+          window.botpressWebChat.init({
+            hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
+            botId: "eb5964e0-c98e-43e9-a928-4ba9882d21a0",
+            configUrl: "https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/12/09/21/20241209215851-XC4MTSLF.json",
+            selector: "#chatContainer"
+          });
+          console.log("Botpress webchat initialized successfully");
+        } catch (error) {
+          console.error("Error initializing Botpress webchat:", error);
+        }
+      } else {
+        console.warn("Botpress webchat not ready or container missing, retrying...");
+        setTimeout(initBotpressWebchat, 1000);  // Retry after 1 second
+      }
+    }
+
+    initBotpressWebchat();
+  });
+</script>
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2024/12/09/21/20241209215851-WA0UMDQR.js"></script>
+  
+
+    
+</html>

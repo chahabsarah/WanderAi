@@ -1,0 +1,17 @@
+<!-- recommendation/templates/recommendation/recommendation_form.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer une Recommandation</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} une Recommandation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+    <a href="{% url 'recommendation-list' %}">Annuler</a>
+</body>
+</html>

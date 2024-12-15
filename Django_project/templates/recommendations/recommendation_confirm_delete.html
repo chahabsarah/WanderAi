@@ -1,0 +1,17 @@
+<!-- recommendation/templates/recommendation/recommendation_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer la Recommandation</title>
+</head>
+<body>
+    <h1>Supprimer la Recommandation</h1>
+    <p>Êtes-vous sûr de vouloir supprimer la recommandation de "{{ recommendation.user.name }}" pour "{{ recommendation.experience_name }}" ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmer la suppression</button>
+    </form>
+    <a href="{% url 'recommendation-list' %}">Annuler</a>
+</body>
+</html>
